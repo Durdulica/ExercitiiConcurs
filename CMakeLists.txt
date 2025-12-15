@@ -4,4 +4,5 @@ project(ProblemeDeConcurs)
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(ProblemeDeConcurs main.cpp
-        carteaRosie.h)
+        teorie1.h
+        teorie2.h)

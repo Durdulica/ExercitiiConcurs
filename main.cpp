@@ -1,4 +1,4 @@
-#include "carteaRosie.h"
+#include "teorie1.h"
 
 int main() {
     solve();
