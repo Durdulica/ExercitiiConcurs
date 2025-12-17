@@ -62,17 +62,19 @@ void solve() {
         return;
     }
 
+    // len[i][j] = lungimea LCS pentru sufixele a[i..], b[j..]
     const int cols = m + 1;
     const int rows = n + 1;
     const int total = rows * cols;
     int *len = new int[total];
-    int *cnt = new int[total];
+    int *cnt = new int[total];  // cnt[i][j] = numarul de LCS distincte pentru aceleasi sufixe
 
     for (int i = 0; i < total; ++i) {
         len[i] = 0;
         cnt[i] = 0;
     }
 
+    // Baza: daca unul dintre sufixe e gol, exista doar sirul vid => un singur LCS
     for (int i = 0; i <= n; ++i) {
         cnt[i * cols + m] = 1;
     }
@@ -80,6 +82,7 @@ void solve() {
         cnt[n * cols + j] = 1;
     }
 
+    // Parcurgem invers, astfel incat dependentele (dreapta, jos, diagonala) sunt deja evaluate
     for (int i = n - 1; i >= 0; --i) {
         for (int j = m - 1; j >= 0; --j) {
             int idx = i * cols + j;
@@ -88,6 +91,7 @@ void solve() {
             int idxDiag = (i + 1) * cols + (j + 1);
 
             if (first[i] == second[j]) {
+                // Caractere egale: crestem cu 1 lungimea diagonalei si mostenim numarul de solutii
                 len[idx] = len[idxDiag] + 1;
                 cnt[idx] = cnt[idxDiag];
             } else {
@@ -98,12 +102,15 @@ void solve() {
 
                 long long ways = 0;
                 if (l1 == best) {
+                    // Folosim varianta "jos" daca pastreaza lungimea maxima
                     ways += cnt[idxDown];
                 }
                 if (l2 == best) {
+                    // Folosim varianta "dreapta" daca pastreaza lungimea maxima
                     ways += cnt[idxRight];
                 }
                 if (l1 == best && l2 == best && len[idxDiag] == best) {
+                    // Diagonala ar fi numarata de doua ori, o scadem (inclusion-exclusion)
                     ways -= cnt[idxDiag];
                 }
                 ways %= MOD;

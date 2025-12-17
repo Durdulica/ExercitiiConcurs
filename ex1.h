@@ -15,7 +15,7 @@ char a[501], b[501];
 int n, m, smax = -1, rez = 0;
 
 void citire() {
-    cin.getline(a, 500);
+    cin.getline(a, 500); // PROBLEMA: bufferul are 501 caractere, dar citim doar 500 => ultimul caracter se pierde
     cin.getline(b, 500);
     n = (int)strlen(a);
     m = (int)strlen(b);
@@ -27,17 +27,18 @@ void subsir(int max, int indi, int indj) {
         for(int j = 0; j <= m; j++) {
             if(a[i] == b[j]) {
                 max++;
-                i++;
+                i++; // PROBLEMA: crestem i in bucla interioara -> sarim peste elemente si putem depasi limita lui a[]
             }
         }
         if(max > smax) {
             smax = max;
-            max = 0;
+            max = 0; // PROBLEMA: resetarea aici pierde informatia pentru comparatia urmatoare
             rez = 1;
         }else if(max == smax) {
-            rez++;
+            rez++; // PROBLEMA: rez doar contorizeaza aparitii ale aceluiasi max lacom, nu LCS distincte
         }
     }
+    // PROBLEMA generala: abordarea e pur lacoma si ignora definitia LCS (nu exista DP, nu se elimina dublurile etc.).
 }
 
 void solve() {
