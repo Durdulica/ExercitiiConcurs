@@ -1,4 +1,4 @@
-#include "teorie2.h"
+#include "ex1.h"
 
 int main() {
     solve();

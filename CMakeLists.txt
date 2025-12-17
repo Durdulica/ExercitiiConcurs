@@ -5,4 +5,6 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(ProblemeDeConcurs main.cpp
         teorie1.h
-        teorie2.h)
+        teorie2.h
+        teorie3.h
+        ex1.h)
