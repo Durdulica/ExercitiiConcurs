@@ -1,10 +1,18 @@
-.idea/
+# Build directories
+cmake-build-*/
 cmake-build-debug/
 cmake-build-release/
-CMakeCache.txt
 CMakeFiles/
+
+# CMake cache/generator files
+CMakeCache.txt
 cmake_install.cmake
 Makefile
+
+# IDE metadata
+.idea/
+
+# Binaries/object files
 *.o
 *.obj
 *.exe
@@ -12,5 +20,9 @@ Makefile
 *.a
 *.so
 *.dll
+main
+
+# Misc / logs
 *.log
 *.swp
+Testing/
