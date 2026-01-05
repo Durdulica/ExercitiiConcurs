@@ -20,9 +20,10 @@ void citire() {
 }
 
 void rezolvare() {
+    citire();
     int sume[50001] = {};
     int lungime[50001] = {};
-    for(int i = 0; i < n - k; i++) {
+    for(int i = 0; i <= n - k; i++) {
         int j = i;
         while(j < i + k) {
             sume[i] += v[j];
@@ -47,7 +48,7 @@ void rezolvare() {
         }
     }
 
-    cout << index << " " << index + lungime[index] << " " << sume[index] << endl;
+    cout << index + 1<< " " << index + lungime[index] + 1 << " " << sume[index] << endl;
 }
 
 
