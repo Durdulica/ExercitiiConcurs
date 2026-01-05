@@ -1,6 +1,6 @@
-#include "ex2.h"
+#include "zaharel_lcs.h"
 
 int main() {
-    rezolvare();
+    solve();
+    return 0;
 }
-
