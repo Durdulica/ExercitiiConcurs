@@ -1,6 +1,5 @@
-#include "ex2.h"
+#include "ex4_Stefan.h"
 
 int main() {
-    rezolvare();
-    return 0;
+
 }
