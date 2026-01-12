@@ -58,8 +58,8 @@ void rezolvare() {
         return;
     }
 
-    for (int i = 0; i <= n; ++i) {
-        for (int j = 0; j <= m; ++j) {
+    for (int i = 1; i <= n; ++i) {
+        for (int j = 1; j <= m; ++j) {
             prefixBest[i][j] = NEG_INF;
             diffVal[i][j] = 0;
         }

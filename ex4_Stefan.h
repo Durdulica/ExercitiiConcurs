@@ -18,7 +18,7 @@ using namespace std;
 //coloana unde se va plasa jetonul la inceputul jocului
 
 int mat[1001][1001];
-inline int n, m, pct1 = 0, pct2 = 0, bestL = -1, bestC = - 1, turn = 0;
+inline int n, m, bestL = -1, bestC = -1, bestScore = INT_MIN, turn;
 
 void citire() {
     ifstream fin("D:/info/c++/clion/ProblemeDeConcurs/file.in.txt");
@@ -30,8 +30,40 @@ void citire() {
     }
 }
 
-void rezolvare() {
+//0 0 0 0
+//0 0 17 0
+//0 5 3 18
+//0 0 0 0
 
+int maxMat(int lin, int col, int &indi, int &indj) {
+    int maxim = INT_MIN;
+    for (int i = 1; i <= lin; i++) {
+        for (int j = 1; j <= col; j++) {
+            if(mat[i][j] > maxim) {
+                maxim = mat[i][j];
+            }
+        }
+    }
+    return maxim;
+}
+
+void rezolvare() {
+    for(int i = n; i > 0; i--) {
+        for(int j = m; j > 0; j--) {
+            int pct1 = mat[i][j], pct2 = 0, a = i, b = j, indi = -1, indj = -1;
+            while(a > 0 && b > 0) {
+                int maxim = maxMat(a, b, indi, indj);
+                if(turn) {
+                    pct2 += maxim;
+                    turn = 0;
+                }else {
+                    pct1 += maxim;
+                    turn = 1;
+                }
+                a = indi, b = indj;
+            }
+        }
+    }
 }
 
 #endif //EX4_STEFAN_H

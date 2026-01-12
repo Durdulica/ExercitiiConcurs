@@ -1,6 +1,5 @@
 #ifndef EX3_H
 #define EX3_H
-
 #include <iostream>
 #include <fstream>
 #include <climits>
