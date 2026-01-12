@@ -22,8 +22,8 @@ const int MAX_DIM = 1000;
 const int NEG_INF = -2000000000;
 
 int mat[MAX_DIM + 1][MAX_DIM + 1];
-int diffVal[MAX_DIM + 1][MAX_DIM + 1];
-int prefixBest[MAX_DIM + 1][MAX_DIM + 1];
+int diffVal[MAX_DIM + 1][MAX_DIM + 1];    // f(i,j): diferenta maxima pentru jucatorul care urmeaza la mutare
+int prefixBest[MAX_DIM + 1][MAX_DIM + 1]; // maximul lui g(x,y) in prefixul (1,1)-(i,j)
 
 inline int n, m;
 
@@ -69,29 +69,33 @@ void rezolvare() {
     int bestRow = 1;
     int bestCol = 1;
 
-    // Parcurgem toate celulele si pastram, pentru fiecare, cea mai buna mutare pozitionata in dreptunghiul (1,1)-(i,j).
+    // Algoritm pas cu pas:
+    // 1) f(i,j) = diferenta maxima (P1 - P2) daca jetonul e in (i,j) si urmeaza sa mut.
+    // 2) g(i,j) = mat[i][j] - f(i,j); atunci f(i,j) e maximul lui g pe dreptunghiul (1,1)-(i,j) fara (i,j).
+    // 3) prefixBest tine maximul lui g pe prefix, pentru a calcula f(i,j) in O(1).
     for (int i = 1; i <= n; ++i) {
-        int rowBest = NEG_INF;
+        int rowBest = NEG_INF; // maxim g pe prefixul de pe linia curenta
         for (int j = 1; j <= m; ++j) {
-            // bestCandidate = maximul valorilor g(x,y) deja calculat in dreptunghiul de deasupra.
+            // Pas 1: luam maximul lui g din celulele deja procesate (deasupra si stanga).
             int bestCandidate = prefixBest[i - 1][j];
             if (rowBest > bestCandidate) {
                 bestCandidate = rowBest;
             }
 
+            // Pas 2: f(i,j) = bestCandidate (sau 0 daca nu exista mutari).
             if (bestCandidate == NEG_INF) {
                 diffVal[i][j] = 0;
             } else {
                 diffVal[i][j] = bestCandidate;
             }
 
-            // gValue = valoarea castigata de jucatorul curent daca plaseaza initial jetonul in (i,j).
+            // Pas 3: calculam g(i,j) pentru mutari viitoare.
             int gValue = mat[i][j] - diffVal[i][j];
             if (gValue > rowBest) {
                 rowBest = gValue;
             }
 
-            // actualizam prefixBest pentru dreptunghiul (1,1)-(i,j): maximul dintre sus, stanga si gValue.
+            // Pas 4: actualizam maximul de prefix pentru (1,1)-(i,j).
             int curPref = prefixBest[i - 1][j];
             if (prefixBest[i][j - 1] > curPref) {
                 curPref = prefixBest[i][j - 1];
@@ -101,7 +105,7 @@ void rezolvare() {
             }
             prefixBest[i][j] = curPref;
 
-            // retinem cea mai buna plasare (dif. maxima, iar la egalitate cea mai din stanga sus).
+            // Pas 5: retinem cea mai buna plasare initiala (dif. maxima, iar la egalitate cea mai din stanga sus).
             if (diffVal[i][j] > bestDiff ||
                 (diffVal[i][j] == bestDiff && (i < bestRow || (i == bestRow && j < bestCol)))) {
                 bestDiff = diffVal[i][j];
