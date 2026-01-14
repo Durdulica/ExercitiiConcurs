@@ -37,7 +37,7 @@ int combinari(int i) {
     return result;
 }
 
-void back(int *c, int *offset, int row, int currentSum) {
+void back(int *c, int *base, int row, int currentSum) {
     if(found) return;
 
     if(row == n + 1) {
@@ -55,12 +55,12 @@ void back(int *c, int *offset, int row, int currentSum) {
 
     for(int i = 1;;i++) {
         int newSum = currentSum + c[row]*i;
-        if(newSum + minSumRest > s) {
+        if(newSum + minSumRest > s || i > s/n) {
             break;
         }
 
-        offset[row] = i;
-        back(c, offset, row + 1, newSum);
+        base[row] = i;
+        back(c, base, row + 1, newSum);
         if(found) return;
     }
 }
@@ -74,19 +74,35 @@ void rezolvare(){
         cout << "sum to little or number of rows to big" << endl;
         return;
     }
-    int c[n + 1], offset[n + 1];
+    int c[n + 1] = {}, base[n + 1] = {};
     for(int i = 1; i <= n; i++) {
         c[i] = combinari(i);
     }
 
-    back(c, offset, 1, s);
+    back(c, base, 1, 0);
 
     if(!found) {
         cout << "impossible" << endl;
     }else {
-        cout << "test" << endl;
+        int triunghi[n + 1][n + 1] = {};
+        for(int i = 1; i <= n; i++) {
+            triunghi[n][i] = base[i];
+        }
 
-        //constructia triunghiului
+        for(int i = n - 1; i > 0; i--) {
+            for(int j = 1; j <= i; j++) {
+                triunghi[i][j] = triunghi[i + 1][j] + triunghi[i + 1][j + 1];
+            }
+        }
+
+        for(int i = 1; i <= n; i++) {
+            for(int j = 1; j <= n; j++) {
+                if(triunghi[i][j]) {
+                    cout << triunghi[i][j] << " ";
+                }
+            }
+            cout << endl;
+        }
     }
 }
 #endif //EX6_STEFAN_H
