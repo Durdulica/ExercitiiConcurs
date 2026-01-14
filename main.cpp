@@ -1,4 +1,4 @@
-#include "ex6_Stefan.h"
+#include "ex7_Stefan.h"
 
 int main() {
     rezolvare();
