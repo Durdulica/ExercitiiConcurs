@@ -12,28 +12,81 @@ using namespace std;
 // stiind ca poate folosi oricate cutii cu orice nr. in ele. Se va citii n si s. Se vor afisa nr. de pe cutiile din triunghi,
 
 
+int minSum(int n) {
+    int sum = 0;
+    for(int i = 1, ct = n; i <= n; i++, ct--) {
+        sum += ct * i;
+    }
+    return sum;
+}
 
+int n, s;
+bool found = false;
+
+int combinari(int i) {
+    if(i < 0 || i > n) return 0;
+
+    if(i == 0 || i == n) return 1;
+    if(i > n/2) {
+        i = n - i;
+    }
+    int result = 1;
+    for(int j = 1; j <=i; j++) {
+        result = result * (n - j + 1)/j;
+    }
+    return result;
+}
+
+void back(int *c, int *offset, int row, int currentSum) {
+    if(found) return;
+
+    if(row == n + 1) {
+        if(currentSum == s) {
+            found = true;
+        }
+        return;
+    }
+
+    int minSumRest = 0;
+
+    for(int i = row + 1; i <= n; i++) {
+        minSumRest += c[i];
+    }
+
+    for(int i = 1;;i++) {
+        int newSum = currentSum + c[row]*i;
+        if(newSum + minSumRest > s) {
+            break;
+        }
+
+        offset[row] = i;
+        back(c, offset, row + 1, newSum);
+        if(found) return;
+    }
+}
 
 void rezolvare(){
-    int n, s;
     ifstream fin("D:/info/c++/clion/ProblemeDeConcurs/file.in.txt");
 
     fin >> n >> s;
-    
-    int mat[n][100] = {}; ///???
 
-    for(int i = n - 1; i >= 0; i--) {
-        for(int j = 0; j <= i; j++) {
-
-            mat[i][j] = 1;
-        }
+    if(minSum(n) > s) {
+        cout << "sum to little or number of rows to big" << endl;
+        return;
+    }
+    int c[n + 1], offset[n + 1];
+    for(int i = 1; i <= n; i++) {
+        c[i] = combinari(i);
     }
 
-    for(int i = 0; i < n; i++) {
-        for(int j = 0; j <= i; j++) {
-            cout << mat[i][j] << " ";
-        }
-        cout << endl;
+    back(c, offset, 1, s);
+
+    if(!found) {
+        cout << "impossible" << endl;
+    }else {
+        cout << "test" << endl;
+
+        //constructia triunghiului
     }
 }
 #endif //EX6_STEFAN_H

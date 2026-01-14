@@ -65,7 +65,7 @@ void rezolvare() {
         }
     }
 
-    int bestDiff = NEG_INF;
+    int bestDiff = mat[1][1];
     int bestRow = 1;
     int bestCol = 1;
 
