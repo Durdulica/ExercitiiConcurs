@@ -1,4 +1,4 @@
-#include "recapitulare_ex1.h"
+#include "1.1_Stefan.h"
 
 int main() {
     rezolvare1();
