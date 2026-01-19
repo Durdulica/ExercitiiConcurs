@@ -52,8 +52,7 @@ void rezolvare() {
     citire1(second, m);
 
     if (!first || !second) {
-        delete[] first;
-
+        delete[] first;     //ne asiguram ca avem 2 cuvinte
         delete[] second;
         return;
     }
@@ -61,38 +60,38 @@ void rezolvare() {
     int cols = m + 1;
     int rows = n + 1;
     int total = rows * cols;
-    int *len = new int[total];
-    int *cnt = new int[total];
+    int *len = new int[total];      //dimensiunea secventei din pozitia i din primul cuvant si j din al doilea
+    int *cnt = new int[total];      //cate elem sunt egale pe pozitia i din primul cuvant si j din al doilea
 
     for(int i = 0; i < total; i++) {
-        len[i] = 0;
+        len[i] = 0;         //initializam vectorii
         cnt[i] = 0;
     }
 
     for(int i = 0; i <= n; i++) {
-        cnt[i * cols + m] = 1;
+        cnt[i * cols + m] = 1;      //marcam pozitiile la care se afla literele din primul cuvant
     }
     for(int i = 0; i <= m; i++) {
-        cnt[n * cols + i] = 1;
+        cnt[n * cols + i] = 1;      //marcam pozitiile la care se afla literele din al doilea cuvant
     }
 
-    for(int i = n - 1; i >= 0; i--) {
+    for(int i = n - 1; i >= 0; i--) {       //parcurgere inversa pentru a avea calculate down, right si diag
         for(int j = m - 1; j >= 0; j--) {
             int idx = i * cols + j;
-            int idxDown = (i + 1) * cols + j;
+            int idxDown = (i + 1) * cols + j;       //calcularea indexilor
             int idxRight = i * cols + (j + 1);
             int idxDiag =  (i + 1) * cols + (j + 1);
 
             if(first[i] == second[j]) {
-                len[idx] = len[idxDiag] + 1;
-                cnt[idx] = cnt[idxDiag];
+                len[idx] = len[idxDiag] + 1;        //daca dam de litere egale incrementam dim. cu 1
+                cnt[idx] = cnt[idxDiag];            //si tinem minte diagonala
             }else {
                 int l1 = len[idxDown];
                 int l2 = len[idxRight];
-                int best =  (l1 > l2) ? l1 : l2;
+                int best =  (l1 > l2) ? l1 : l2;    //cauteam cea mai mare solutie
                 len[idx] = best;
 
-                int ways = 0;
+                int ways = 0;           //calculam cate secvente apar pentru fiecare pozitie
                 if(l1 == best) {
                     ways += cnt[idxDown];
                 }
