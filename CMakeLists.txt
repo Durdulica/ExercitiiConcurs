@@ -9,4 +9,5 @@ add_executable(ProblemeDeConcurs main.cpp
         teorie3.h
         ex1.h
         ex2.h
-        ex2_Stefan.h)
+        ex2_Stefan.h
+        ex1.h)
