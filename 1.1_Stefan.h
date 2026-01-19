@@ -7,7 +7,7 @@ using namespace std;
 
 //se dau 2 siruri formate din litere mici. Det. nr. de subsiruri comune distincte de lungime maxima.
 ifstream fin("D:/info/c++/clion/ProblemeDeConcurs/file.in.txt");
-void citire1(char *&word, int &length) {
+void citire(char *&word, int &length) {
     length = 0;
     int capacity = 500;
     word = new char[capacity];
@@ -43,7 +43,7 @@ void citire1(char *&word, int &length) {
     word[length] = '\0';
 }
 
-void rezolvare1() {
+void rezolvare() {
     char *first = nullptr;
     char *second = nullptr;
     int n, m;
@@ -109,29 +109,8 @@ void rezolvare1() {
         }
     }
 
-    for(int i = 0; i < total; i++) {
-         cout << len[i] << " ";
-    }
 
-    // cout << cnt[0] % 666013 << endl;
-
-    // int res = 0, maxim = INT_MIN;
-    // for(int i = 0; i < total; i++) {
-    //     if(cnt[i] >= 2) {
-    //         int index = 1;
-    //         while(cnt[i+1] >= 2) {
-    //             i++;
-    //             index++;
-    //         }
-    //         if(index > maxim) {
-    //             maxim = index;
-    //             res = 1;
-    //         }else if(index == maxim) {
-    //             res++;
-    //         }
-    //     }
-    // }
-    // cout << res << endl;
+    cout << cnt[0] % 666013 << endl;
 
     delete[] len;
     delete[] cnt;

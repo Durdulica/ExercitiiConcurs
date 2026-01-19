@@ -1,5 +1,5 @@
-#include "1.1_Stefan.h"
+#include "ex1_1.h"
 
 int main() {
-    rezolvare1();
+    rezolvare_ex1_1();
 }

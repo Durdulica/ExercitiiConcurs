@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-// Problema 1 (README): Numarul de LCS distincte pentru doua siruri.
+// Problema 1 : Numarul de LCS distincte pentru doua siruri.
 // Metoda: programare dinamica pe sufixe (bottom-up).
 // - len[i][j] = lungimea LCS dintre sufixele A[i..] si B[j..]
 // - cnt[i][j] = numarul de LCS distincte pentru aceleasi sufixe
