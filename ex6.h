@@ -1,8 +1,6 @@
 #ifndef EX6_H
 #define EX6_H
-
 #include <iostream>
-
 using namespace std;
 
 static bool dfsBase(int idx,
@@ -154,5 +152,4 @@ void rezolvare() {
     delete[] suffixMin;
     delete[] base;
 }
-
 #endif //EX6_H

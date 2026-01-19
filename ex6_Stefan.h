@@ -31,7 +31,7 @@ int combinari(int i) {      //algorimul de calculare al combinarilor de n luate 
         i = n - i;
     }
     int result = 1;
-    for(int j = 1; j <=i; j++) {
+    for(int j = 1; j <= i; j++) {
         result = result * (n - j + 1)/j;    //simplificam n! si (n-k)! din formula pt. a ajunge la ecuatie
     }
     return result;
@@ -97,10 +97,8 @@ void rezolvare(){
         }
 
         for(int i = 1; i <= n; i++) {       //afisarea
-            for(int j = 1; j <= n; j++) {
-                if(triunghi[i][j]) {
-                    cout << triunghi[i][j] << " ";
-                }
+            for(int j = 1; j <= i; j++) {
+                cout << triunghi[i][j] << " ";
             }
             cout << endl;
         }

@@ -1,6 +1,5 @@
 #ifndef ZAHAREL_LCS_H
 #define ZAHAREL_LCS_H
-
 #include <iostream>
 
 const int MOD = 666013;
