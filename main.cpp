@@ -1,5 +1,6 @@
-#include "ex1_1.h"
+#include "ex1.h"
 
 int main() {
-    rezolvare_ex1_1();
+    testare();
+    return 0;
 }

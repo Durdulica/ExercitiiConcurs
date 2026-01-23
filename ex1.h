@@ -1,7 +1,10 @@
 #ifndef EX1_H
 #define EX1_H
 #include <iostream>
+#include <cassert>
 #include <cstring>
+
+using  namespace std;
 
 // Zaharel incearca s-o invete pe Eugenia informatica. Astazi a invatat-o
 // programare dinamica si a inceput cu problema celui mai lung subsir comun:
@@ -18,123 +21,88 @@
 
 const int MOD = 666013;
 
-inline void readWord(char *&buffer, int &length) {
-    length = 0;
-    int capacity = 16;
-    buffer = new char[capacity];
-    int ch;
-    bool started = false;
-
-    while ((ch = std::cin.get()) != EOF) {
-        if (ch >= 'a' && ch <= 'z') {
-            started = true;
-            buffer[length++] = static_cast<char>(ch);
-            break;
-        }
+ void assert_eq(int actual, int expected, const char* label) {
+    if (actual != expected) {
+        cerr << "FAIL " << label << ": expected " << expected
+                  << ", got " << actual << '\n';
+        abort();
     }
-
-    if (!started) {
-        delete[] buffer;
-        buffer = nullptr;
-        length = 0;
-        return;
-    }
-
-    while ((ch = cin.get()) != EOF) {
-        if (ch < 'a' || ch > 'z') {
-            break;
-        }
-        if (length + 1 >= capacity) {
-            capacity <<= 1;
-            char *temp = new char[capacity];
-            for (int i = 0; i < length; ++i) {
-                temp[i] = buffer[i];
-            }
-            delete[] buffer;
-            buffer = temp;
-        }
-        buffer[length++] = static_cast<char>(ch);
-    }
-    buffer[length] = '\0';
 }
 
-inline void rezolvare() {
-    char *first = nullptr;
-    char *second = nullptr;
-    int n = 0, m = 0;
-    readWord(first, n);
-    readWord(second, m);
 
-    if (!first || !second) {
-        std::cout << 0;
-        delete[] first;
-        delete[] second;
-        return;
-    }
 
-    // len[i][j] = lungimea LCS pentru sufixele a[i..], b[j..]
-    const int cols = m + 1;
-    const int rows = n + 1;
-    const int total = rows * cols;
-    int *len = new int[total];
-    int *cnt = new int[total];  // cnt[i][j] = numarul de LCS distincte pentru aceleasi sufixe
+int rezolvare(const char* a, const char* b) {
+    int n = strlen(a);
+    int m = strlen(b);
 
-    for (int i = 0; i < total; ++i) {
+    int c = m + 1;
+    int r = n + 1;
+    int tot = r * c;
+
+    int* len = new int[tot];
+    int* cnt = new int[tot];
+
+    for (int i = 0; i < tot; ++i) {
         len[i] = 0;
         cnt[i] = 0;
     }
 
-    // Baza: daca unul dintre sufixe e gol, exista doar sirul vid => un singur LCS
-    for (int i = 0; i <= n; ++i) {
-        cnt[i * cols + m] = 1;
-    }
-    for (int j = 0; j <= m; ++j) {
-        cnt[n * cols + j] = 1;
-    }
+    for (int i = 0; i <= n; ++i)
+        cnt[i * c + m] = 1;
 
-    // Parcurgem invers, astfel incat dependentele (dreapta, jos, diagonala) sunt deja evaluate
+    for (int j = 0; j <= m; ++j)
+        cnt[n * c + j] = 1;
+    
     for (int i = n - 1; i >= 0; --i) {
         for (int j = m - 1; j >= 0; --j) {
-            int idx = i * cols + j;
-            int idxDown = (i + 1) * cols + j;
-            int idxRight = i * cols + (j + 1);
-            int idxDiag = (i + 1) * cols + (j + 1);
 
-            if (first[i] == second[j]) {
-                // Caractere egale: crestem cu 1 lungimea diagonalei si mostenim numarul de solutii
-                len[idx] = len[idxDiag] + 1;
-                cnt[idx] = cnt[idxDiag];
-            } else {
-                int l1 = len[idxDown];
-                int l2 = len[idxRight];
-                int best = (l1 > l2) ? l1 : l2;
-                len[idx] = best;
+            int poz  = i * c + j;
+            int jos  = (i + 1) * c + j;
+            int dr   = i * c + (j + 1);
+            int diag = (i + 1) * c + (j + 1);
+
+            if (a[i] == b[j]) {
+                len[poz] = len[diag] + 1;
+                cnt[poz] = cnt[diag];
+            } 
+            else {
+                int l1 = len[jos];
+                int l2 = len[dr];
+                int best = max(l1, l2);
+                len[poz] = best;
 
                 long long ways = 0;
-                if (l1 == best) {
-                    // Folosim varianta "jos" daca pastreaza lungimea maxima
-                    ways += cnt[idxDown];
-                }
-                if (l2 == best) {
-                    // Folosim varianta "dreapta" daca pastreaza lungimea maxima
-                    ways += cnt[idxRight];
-                }
-                if (l1 == best && l2 == best && len[idxDiag] == best) {
-                    // Diagonala ar fi numarata de doua ori, o scadem (inclusion-exclusion)
-                    ways -= cnt[idxDiag];
-                }
+                if (l1 == best) ways += cnt[jos];
+                if (l2 == best) ways += cnt[dr];
+
+                if (l1 == best && l2 == best && len[diag] == best)
+                    ways -= cnt[diag];
+
                 ways %= MOD;
                 if (ways < 0) ways += MOD;
-                cnt[idx] = static_cast<int>(ways);
+
+                cnt[poz] = (int)ways;
             }
         }
     }
 
-    std::cout << (cnt[0] % MOD);
+    int rez = cnt[0] % MOD;
 
     delete[] len;
     delete[] cnt;
-    delete[] first;
-    delete[] second;
+    return rez;
 }
+
+
+
+void testare() {
+     assert_eq(rezolvare("abcd","acbd"), 2, "abcd/acbd"); // "abd", "acd"
+     assert_eq(rezolvare("abc","abc"), 1, "abc/abc");
+     assert_eq(rezolvare("abc","def"), 1, "abc/def"); // doar sirul vid
+     assert_eq(rezolvare("aaaa","aa"), 1, "aaaa/aa"); // "aa"
+     assert_eq(rezolvare("ab","ba"), 2, "ab/ba"); // "a", "b"
+     cout << "PASS\n";
+ }
+
+
 #endif //EX1_H
