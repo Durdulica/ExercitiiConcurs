@@ -226,3 +226,125 @@ Output:
 5 5 3
 ```
 Explicatie: subsecventa [4] are suma 4, lungime 1, valoare 4 - 1*1 = 3.
+
+# Probleme cu baza maxima (similare cu ex3)
+
+Acest set contine 5 probleme asemanatoare cu "baza maxima" pentru secvente
+consecutive (minimul din secventa). Fiecare problema are enunt, format
+input/output, constrangeri si un exemplu.
+
+## Problema 1: Baza maxima cu lungime exacta K
+
+Enunt: Se da un sir de n numere intregi. Determinati o secventa consecutiva
+de lungime exact k cu baza maxima (baza = minimul din secventa). Afisati
+pozitiile (1-based) si valoarea bazei.
+
+Input: prima linie n k, a doua linie n numere.
+Output: pozitia de inceput, pozitia de sfarsit, baza maxima.
+Constrangeri: 1 <= k <= n <= 200000, |v[i]| <= 30000.
+
+Exemplu:
+Input:
+```
+6 3
+2 -1 4 0 3 -2
+```
+Output:
+```
+2 4 -1
+```
+Explicatie: secventa [-1,4,0] are baza -1 si este maxima pentru k=3.
+
+## Problema 2: Baza maxima cu lungime cel putin K si cea mai scurta
+
+Enunt: Se da un sir de n numere intregi si k. Determinati o secventa
+consecutiva de lungime cel putin k cu baza maxima. Daca exista mai multe,
+alegeti secventa cu lungime minima, iar la egalitate cea mai din stanga.
+
+Input: prima linie n k, a doua linie n numere.
+Output: pozitia de inceput, pozitia de sfarsit, baza maxima.
+Constrangeri: 1 <= k <= n <= 200000, |v[i]| <= 30000.
+
+Exemplu:
+Input:
+```
+7 2
+5 1 4 3 2 6 1
+```
+Output:
+```
+2 3 1
+```
+Explicatie: baza maxima este 1; secventa [1,4] are lungime minima.
+
+## Problema 3: Baza maxima pentru intervale multiple
+
+Enunt: Se da un sir de n numere intregi si q interogari. Fiecare interogare
+da o valoare k. Pentru fiecare k, determinati o secventa consecutiva de
+lungime cel putin k cu baza maxima si afisati baza maxima.
+
+Input: prima linie n q, a doua linie n numere, apoi q linii cu k.
+Output: pentru fiecare interogare, baza maxima.
+Constrangeri: 1 <= n <= 200000, 1 <= q <= 200000, 1 <= k <= n,
+|v[i]| <= 30000.
+
+Exemplu:
+Input:
+```
+5 3
+2 5 1 4 3
+1
+2
+4
+```
+Output:
+```
+5
+3
+1
+```
+Explicatie: pentru k=1 baza maxima e 5; pentru k=2 e 3; pentru k=4 e 1.
+
+## Problema 4: Baza maxima cu restrictie de suma minima
+
+Enunt: Se da un sir de n numere intregi si doua valori k si s. Determinati o
+secventa consecutiva de lungime cel putin k cu baza maxima, avand suma
+elementelor cel putin s. Daca nu exista, afisati "NU".
+
+Input: prima linie n k s, a doua linie n numere.
+Output: pozitia de inceput, pozitia de sfarsit, baza maxima sau "NU".
+Constrangeri: 1 <= k <= n <= 200000, |v[i]| <= 30000, |s| <= 10^9.
+
+Exemplu:
+Input:
+```
+6 2 5
+1 2 -1 4 0 3
+```
+Output:
+```
+4 6 0
+```
+Explicatie: [4,0,3] are suma 7 >= 5, baza 0, maxima.
+
+## Problema 5: Baza maxima cu penalizare pe lungime
+
+Enunt: Se da un sir de n numere intregi si o penalizare p. Pentru o secventa
+consecutiva, valoarea ei este baza (minimul) minus p * lungime. Determinati
+secventa cu valoare maxima si afisati pozitiile si valoarea.
+
+Input: prima linie n p, a doua linie n numere.
+Output: pozitia de inceput, pozitia de sfarsit, valoarea maxima.
+Constrangeri: 1 <= n <= 200000, |v[i]| <= 30000, 0 <= p <= 10^4.
+
+Exemplu:
+Input:
+```
+5 1
+3 -1 2 -2 4
+```
+Output:
+```
+1 1 2
+```
+Explicatie: secventa [3] are baza 3, valoare 3 - 1*1 = 2.
