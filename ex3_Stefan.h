@@ -4,10 +4,10 @@
 #include <fstream>
 using namespace std;
 
-//Gigel are un sir de n <= 50000 nr. intregi din intervalul [-30000, 30000]. O secventa este un subsir de nr. care apar
-//pe pozitii conesc. in sirul initial. Gigel a definit baza unei secvente ca fiind minimul valorilor elem. din secventa respectiva
-//Fiind da un nr. nat. k det. o secventa de lungime cel putin k cu baza maxima. Sa se afis. poz. de inceput si de sfarsit a secventei
-//de lungime cel putin k cu baza max. si valoarea maxima a bazei
+// Gigel are un sir de n <= 50000 nr. intregi din intervalul [-30000, 30000]. O secventa este un subsir de nr. care apar
+// pe pozitii consec. in sirul initial. Gigel a definit baza unei secvente ca fiind minimul valorilor elem. din secventa respectiva.
+// Fiind dat un nr. nat. k det. o secventa de lungime cel putin k cu baza maxima. Sa se afis. poz. de inceput si de sfarsit a secventei
+// de lungime cel putin k cu baza max. si valoarea maxima a bazei
 
 int n, k;
 int v[50000];

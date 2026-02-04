@@ -28,7 +28,7 @@ void rezolvare() {
         prefix[i] = prefix[i - 1] + v[i - 1];
     }
 
-    
+
 }
 
 #endif //INC_2_4_STEFAN_H
