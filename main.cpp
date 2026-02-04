@@ -1,6 +1,4 @@
-#include "ex1.h"
+#include "15.1_Stefan.h"
 
 int main() {
-    testare();
-    return 0;
 }

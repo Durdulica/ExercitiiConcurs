@@ -5,116 +5,50 @@
 #include <fstream>
 using namespace std;
 
-//se dau 2 siruri formate din litere mici. Det. nr. de subsiruri comune distincte de lungime maxima.
-ifstream fin("D:/info/c++/clion/ProblemeDeConcurs/file.in.txt");
-void citire(char *&word, int &length) {
-    length = 0;
-    int capacity = 500;
-    word = new char[capacity];
-    int ch;
-    bool started = false;
+void rezolvare(char *first, char *second){
+    int n = strlen(first);
+    int m = strlen(second);
 
-    while((ch = fin.get()) != EOF) {
-        if((ch >= 'a' && ch <= 'z')) {
-            started = true;
-            word[length++] = (char)ch;
-            break;
+    int len[n + 1][m + 1];
+    int cnt[n + 1][m + 1];
+
+    for(int i = 0; i <= n; i++) {
+        for(int j = 0; j <= m; j++) {
+            len[i][j] = 0;
+            cnt[i][j] = 0;
         }
-    }
-
-    if(!started) {
-        delete[] word;
-        word = nullptr;
-        length = 0;
-        return;
-    }
-
-    while((ch = fin.get()) != EOF) {
-        if(ch < 'a' || ch > 'z') {
-            break;
-        }
-        if(length + 1 >= capacity) {
-            cout << "word exceeded capacity" << endl;
-            delete[] word;
-            return;
-        }
-        word[length++] = (char)ch;
-    }
-    word[length] = '\0';
-}
-
-void rezolvare() {
-    char *first = nullptr;
-    char *second = nullptr;
-    int n, m;
-
-    citire1(first, n);
-    citire1(second, m);
-
-    if (!first || !second) {
-        delete[] first;
-
-        delete[] second;
-        return;
-    }
-
-    int cols = m + 1;
-    int rows = n + 1;
-    int total = rows * cols;
-    int *len = new int[total];
-    int *cnt = new int[total];
-
-    for(int i = 0; i < total; i++) {
-        len[i] = 0;
-        cnt[i] = 0;
     }
 
     for(int i = 0; i <= n; i++) {
-        cnt[i * cols + m] = 1;
+        cnt[i][m] = 1;
     }
-    for(int i = 0; i <= m; i++) {
-        cnt[n * cols + i] = 1;
+    for(int j = 0; j <= m; j++) {
+        cnt[n][j] = 1;
     }
+
+
 
     for(int i = n - 1; i >= 0; i--) {
         for(int j = m - 1; j >= 0; j--) {
-            int idx = i * cols + j;
-            int idxDown = (i + 1) * cols + j;
-            int idxRight = i * cols + (j + 1);
-            int idxDiag =  (i + 1) * cols + (j + 1);
-
             if(first[i] == second[j]) {
-                len[idx] = len[idxDiag] + 1;
-                cnt[idx] = cnt[idxDiag];
+                len[i][j] = len[i + 1][j + 1] + 1;
+                cnt[i][j] = cnt[i + 1][j + 1];
             }else {
-                int l1 = len[idxDown];
-                int l2 = len[idxRight];
-                int best =  (l1 > l2) ? l1 : l2;
-                len[idx] = best;
-
-                int ways = 0;
-                if(l1 == best) {
-                    ways += cnt[idxDown];
-                }
-                if(l2 == best) {
-                    ways += cnt[idxRight];
-                }
-                if(l1 == best && l2 == best && len[idxDiag] == best) {
-                    ways -= cnt[idxDiag];
+                int best = max(len[i + 1][j], len[i][j + 1]);
+                len[i][j] = best;
+                long long ways = 0;
+                if(best == len[i + 1][j]) ways += cnt[i + 1][j];
+                if(best == len[i][j + 1]) ways += cnt[i][j + 1];
+                if(best == len[i + 1][j] && best == len[i][j + 1] && best == len[i + 1][j + 1]) {
+                    ways -= cnt[i + 1][j + 1];
                 }
                 ways %= 666013;
                 if(ways < 0) ways += 666013;
-                cnt[idx] = ways;
+                cnt[i][j] = (int)ways;
             }
         }
     }
 
-
-    cout << cnt[0] % 666013 << endl;
-
-    delete[] len;
-    delete[] cnt;
-    delete[] first;
-    delete[] second;
+    cout << cnt[0][0] << endl;
 }
 #endif //RECAPITULARE_EX1_H

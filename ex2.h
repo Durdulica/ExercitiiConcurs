@@ -6,9 +6,9 @@ using namespace std;
 int n, k, v[50000];
 
 void rezolvare() {
-    if (!citire()) {
-        return;
-    }
+//    if (!citire()) {
+//        return;
+//    }
 
     int prefix[n];
     prefix[0] = 0;
