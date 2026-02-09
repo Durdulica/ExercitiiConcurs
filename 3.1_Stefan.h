@@ -34,9 +34,9 @@ result *rezolvare(int *v, int n, int k) {
     // citire(v, n, k);
 
     int top = -1;
-    int leftLess[n];
-    int rightLess[n];
-    int idxStack[n];
+    int leftLess[n] = {};
+    int rightLess[n] = {};
+    int idxStack[n] = {};
 
     for (int i = 0; i < n; i++) {
         while(top >= 0 && v[idxStack[top]] >= v[i]) {
@@ -70,8 +70,7 @@ result *rezolvare(int *v, int n, int k) {
         int leftBound = leftLess[i] + 1;
         int rightBound = rightLess[i] - 1;
         int length = rightBound - leftBound + 1;
-        // cout << leftBound << " " << rightBound << endl;
-        if(length != k) {
+        if(length < k) {
             continue;
         }
 
