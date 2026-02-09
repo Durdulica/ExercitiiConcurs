@@ -348,3 +348,127 @@ Output:
 1 1 2
 ```
 Explicatie: secventa [3] are baza 3, valoare 3 - 1*1 = 2.
+
+# Probleme cu joc pe matrice (nivel usor, asemanatoare cu ex4)
+
+Acest set contine 5 probleme usoare inspirate din jocul de pe matrice.
+Fiecare problema are enunt, format input/output, constrangeri si un exemplu.
+
+## Problema 1: Un pas spre colt
+
+Enunt: Se da o matrice n x m cu valori intregi. Jetonul porneste in (n,m) si
+la fiecare mutare poate merge in sus sau la stanga cu exact 1 pas. Jucatorii
+muta alternativ, adunand valoarea celulei pe care ajung. Determinati diferenta
+maxima (P1 - P2) daca ambii joaca optim.
+
+Input: n m, apoi matricea.
+Output: diferenta maxima P1 - P2.
+Constrangeri: 1 <= n,m <= 50, valori in [-1000,1000].
+
+Exemplu:
+Input:
+```
+2 2
+1 2
+3 4
+```
+Output:
+```
+3
+```
+Explicatie: P1 merge pe 3, P2 pe 1, P1 pe 2 => diferenta 5-2=3.
+
+## Problema 2: Celula initiala maxima (fara joc)
+
+Enunt: Se da o matrice n x m cu valori intregi. Determinati celula cu valoare
+maxima. Afisati valoarea si pozitia (1-based). Daca sunt mai multe, alegeti
+cea mai din stanga sus.
+
+Input: n m, apoi matricea.
+Output: valoarea maxima si pozitia (linie, coloana).
+Constrangeri: 1 <= n,m <= 1000, valori in [-1000,1000].
+
+Exemplu:
+Input:
+```
+3 3
+1 5 2
+0 5 4
+3 2 1
+```
+Output:
+```
+5 1 2
+```
+
+## Problema 3: Joc cu un singur pas
+
+Enunt: Se da o matrice n x m cu valori intregi si o pozitie initiala (x,y).
+Jucatorul 1 face o singura mutare intr-o celula din dreptunghiul (1,1)-(x,y),
+apoi jocul se opreste. Determinati diferenta maxima P1 - P2 (P2 nu mai muta).
+
+Input: n m, matricea, apoi x y.
+Output: diferenta maxima.
+Constrangeri: 1 <= n,m <= 1000, 1 <= x <= n, 1 <= y <= m.
+
+Exemplu:
+Input:
+```
+2 3
+1 2 3
+4 5 6
+2 3
+```
+Output:
+```
+6
+```
+Explicatie: P1 alege celula cu valoare maxima din prefixul (1,1)-(2,3).
+
+## Problema 4: Joc cu doua mutari (P1 si P2)
+
+Enunt: Se da o matrice n x m si o pozitie initiala (x,y). P1 muta o data in
+prefixul (1,1)-(x,y), apoi P2 muta o data in prefixul noii pozitii. Jocul se
+opreste. Determinati diferenta maxima P1 - P2 (ambii joaca optim).
+
+Input: n m, matricea, apoi x y.
+Output: diferenta maxima.
+Constrangeri: 1 <= n,m <= 200, 1 <= x <= n, 1 <= y <= m.
+
+Exemplu:
+Input:
+```
+2 2
+1 2
+3 4
+2 2
+```
+Output:
+```
+2
+```
+Explicatie: P1 ia 3, P2 ia 1 => diferenta 2.
+
+## Problema 5: Joc pe diagonala
+
+Enunt: Se da o matrice n x m. Jetonul porneste in (n,m). La fiecare mutare se
+poate merge doar pe diagonala sus-stanga (i-1, j-1). Jucatorii muta alternativ
+si aduna valorile celulelor unde ajung. Determinati diferenta maxima P1 - P2.
+
+Input: n m, matricea.
+Output: diferenta maxima P1 - P2.
+Constrangeri: 1 <= n,m <= 500, valori in [-1000,1000].
+
+Exemplu:
+Input:
+```
+3 3
+1 2 3
+4 5 6
+7 8 9
+```
+Output:
+```
+4
+```
+Explicatie: traseul este 9,5,1. P1 ia 9 si 1, P2 ia 5 => 10-5=5.
