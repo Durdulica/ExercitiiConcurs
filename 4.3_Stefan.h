@@ -18,10 +18,8 @@ void citire(int mat[101][101], int &n, int &m, int &x, int &y) {
     fin >> x >> y;
 }
 
-void rezolvare() {
-    int mat[101][101];
-    int n, m, x, y;
-    citire(mat, n, m, x, y);
+int rezolvare(int mat[101][101], int n, int m, int x, int y) {
+    // citire(mat, n, m, x, y);
 
     int bestRez = mat[1][1], bestRow = 1, bestCol = 1;
 
@@ -35,6 +33,24 @@ void rezolvare() {
         }
     }
 
-    cout << bestRez << endl;
+    return bestRez;
+}
+
+void assert_eq(int actual, int expected) {
+    if(expected != actual) {
+        cout << "Failed: expected " << expected << " but got" << actual << endl;
+    }else {
+        cout << "Passed" << endl;
+    }
+}
+
+void test1() {
+    int mat[101][101] = {};
+    mat[1][1] = 1; mat[1][2] = 2; mat[1][3] = 3;
+    mat[2][1] = 4; mat[2][2] = 5; mat[2][3] = 6;
+    int n = 2, m = 3, x = 2, y = 3;
+    int rez = rezolvare(mat,n,m,x,y);
+
+    assert_eq(rez,6);
 }
 #endif //INC_4_3_STEFAN_H

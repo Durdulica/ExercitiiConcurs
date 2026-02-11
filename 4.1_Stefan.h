@@ -17,12 +17,24 @@ void citire(int mat[101][101], int &n, int &m) {
     }
 }
 
-void rezolvare() {
-    int mat[101][101];
+struct result {
+    int diff = INT_MIN;
+    int row = -1;
+    int col = -1;
+};
+
+result *rezolvare(int mat[101][101], int n, int m) {
     int diffVal[101][101] = {};
     int prefixBest[101][101];
-    int n,m;
-    citire(mat,n,m);
+    // citire(mat,n,m);
+
+    cout << n << " " << m << endl;
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= m; j++) {
+            cout << mat[i][j] << " ";
+        }
+        cout << endl;
+    }
 
     for (int i = 0; i <= n; i++) {
         for (int j = 0; j <= m; j++) {
@@ -60,7 +72,7 @@ void rezolvare() {
                 curPref = gVal;
             }
             prefixBest[i][j] = curPref;
-            if(-1 <= j - i < 1 && diffVal[i][j] > bestDiff || (diffVal[i][j] == bestDiff &&
+            if(-1 <= j - i <= 1 && diffVal[i][j] > bestDiff || (diffVal[i][j] == bestDiff &&
                 (i < bestRow || i == bestRow && j < bestCol))) {
                 bestDiff = diffVal[i][j];
                 bestRow = i;
@@ -68,7 +80,32 @@ void rezolvare() {
             }
         }
     }
+    result *rez = new result();
+    rez->diff = bestDiff;
+    rez->row = bestRow;
+    rez->col = bestCol;
+    return rez;
+}
 
-    cout << bestDiff << " " << bestRow << " " << bestCol << endl;
+void assert_eq(result actual, result expected) {
+    if(actual.diff != expected.diff || actual.row != expected.row || actual.col != expected.col) {
+        cout << "Failed: expected " << expected.diff << " " << expected.row << " " << expected.col << " but got "
+        << actual.diff << " " << actual.row << " " << actual.col << endl;
+    }else {
+        cout << "Passed" << endl;
+    }
+}
+
+void test1() {
+    int mat[101][101] = {};
+    mat[1][1] =1; mat[1][2] = 2; mat[2][1] = 3; mat[2][2] = 4;
+    int n = 2, m = 2;
+    result *rez = rezolvare(mat, n, m);
+    result expected;
+    expected.diff = 2;
+    expected.row = 2;
+    expected.col = 2;
+
+    assert_eq(*rez, expected);
 }
 #endif //INC_4_1_STEFAN_H
