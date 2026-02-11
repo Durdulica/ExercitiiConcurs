@@ -117,5 +117,4 @@ void rezolvare() {
 
     cout << bestDiff << " " << bestRow << " " << bestCol << "\n";
 }
-
 #endif //EX4_H
