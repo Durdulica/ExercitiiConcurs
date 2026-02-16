@@ -32,7 +32,7 @@ add_executable(ProblemeDeConcurs main.cpp
         probleme/set4/ex4.h
         probleme/set4/ex4_Stefan.h
         probleme/diverse/15.1_Stefan.h
-        probleme/diverse/ex5.h
+        probleme/raport-cost/ex5.h
         probleme/diverse/ex5_Stefan.h
         probleme/diverse/ex6.h
         probleme/diverse/ex6_Stefan.h

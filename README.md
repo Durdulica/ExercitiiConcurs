@@ -472,3 +472,11 @@ Output:
 4
 ```
 Explicatie: traseul este 9,5,1. P1 ia 9 si 1, P2 ia 5 => 10-5=5.
+
+# Probleme similare cu ex5 (raport cost/timp)
+
+- Problema 1: Avem n proiecte, fiecare cu cost și durată. Alegeți o subsecvență continuă cu lungime între L și U care maximizează media cost/durată. Afișați valoarea maximă.
+- Problema 2: Pentru n lecții video (cost = megabytes, timp = minute), găsiți intervalul continuu cu lungime în [L, U] care minimizează raportul MB/minut. Afișați raportul minim și pozițiile.
+- Problema 3: Într-un șir de senzori (cost = energie consumată, timp = timp activ), determinați dacă există o fereastră de lungime fixă K cu raport energie/timp cel puțin T. Afișați YES/NO.
+- Problema 4: Dată o secvență de cheltuieli zilnice (cost) și timpi de așteptare (timp), găsiți cea mai lungă fereastră cu raport cost/timp sub o limită P. Afișați lungimea maximă și intervalul.
+- Problema 5: Înregistrări audio (cost = mărime fișier, timp = durată secunde); găsiți două ferestre disjuncte cu lungime în [L, U] care au aceeași medie maximă cost/timp. Afișați media și pozițiile celor două ferestre.
