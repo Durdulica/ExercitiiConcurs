@@ -108,8 +108,7 @@ void rezolvare() {
             // Pas 5: retinem cea mai buna plasare initiala (dif. maxima, iar la egalitate cea mai din stanga sus).
             if (diffVal[i][j] > bestDiff ||
                 (diffVal[i][j] == bestDiff && (i < bestRow || (i == bestRow && j < bestCol)))) {
-                bestDiff = diffVal[i][j];
-                bestRow = i;
+                bestDiff = diffVal[i][j];                bestRow = i;
                 bestCol = j;
             }
         }
