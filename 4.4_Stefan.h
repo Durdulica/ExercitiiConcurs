@@ -20,7 +20,6 @@ int maxMat(int mat[101][101], int n, int m) {
 }
 //todo: de corectat
 int rezolvare(int mat[101][101], int n, int m, int x, int y) {
-    int maxMatr[101][101] = {};
     int diffVal[101][101] = {};
 
     for(int i = 1; i <= x; i++) {
