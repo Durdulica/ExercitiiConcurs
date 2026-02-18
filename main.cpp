@@ -1,5 +1,5 @@
-#include "probleme/set4/4.4_Stefan.h"
+#include "probleme/raport-cost/5.2_Stefan.h"
 
 int main() {
-    test1();
+    rezolvare();
 }

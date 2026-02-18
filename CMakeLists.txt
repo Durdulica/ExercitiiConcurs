@@ -33,6 +33,8 @@ add_executable(ProblemeDeConcurs main.cpp
         probleme/set4/ex4_Stefan.h
         probleme/diverse/15.1_Stefan.h
         probleme/raport-cost/ex5.h
+        probleme/raport-cost/5.1_Stefan.h
+        probleme/raport-cost/5.2_Stefan.h
         probleme/diverse/ex5_Stefan.h
         probleme/diverse/ex6.h
         probleme/diverse/ex6_Stefan.h
@@ -42,5 +44,4 @@ add_executable(ProblemeDeConcurs main.cpp
         probleme/diverse/ex8_Stefan.h
         teorie/teorie1.h
         teorie/teorie3.h
-        utilitare/ex1_1.h
         utilitare/file.in.txt)
