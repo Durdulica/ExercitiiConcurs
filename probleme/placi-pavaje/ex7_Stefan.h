@@ -13,7 +13,7 @@ using namespace std;
 //sa se afis. nr. max. de blocuri. 2*2 care pot fi amplasate pe strada
 
 void citire(int mat[16][151], int n, int m, int k) {
-    ifstream fin("D:/info/c++/clion/ProblemeDeConcurs/file.in.txt");
+    ifstream fin("D:/info/c++/clion/ProblemeDeConcurs/utilitare/file.in.txt");
     fin >> n >> m >> k;
     for (int i = 0; i < k; i++) {
         int x,y;
@@ -23,10 +23,9 @@ void citire(int mat[16][151], int n, int m, int k) {
 }
 
 int rezolvare(int mat[16][151], int n, int m, int k) {
-//    citire();
     int rez = 0;
-    for(int i = 1; i < n; i++) {       
-        for(int j = 1; j < m; j++) {
+    for(int i = 1; i <= m; i++) {
+        for(int j = 1; j <= n; j++) {
             if(mat[i][j] == 0 && mat[i+1][j] == 0 && mat[i][j+1] == 0 && mat[i+1][j+1] == 0) {
                 rez++;
                 mat[i][j] = mat[i+1][j] = mat[i][j+1] = mat[i+1][j+1] = 2;
@@ -48,7 +47,7 @@ void assert_eq(int expected, int actual) {
 //citirea se face de la tastatura dupa modelul cerut de problema
 void testare() {
     int mat[16][151];
-    int n, m ,k;
+    int n = 0, m = 0 , k = 0;
     citire(mat, n, m, k);
     int rez = rezolvare(mat, n, m, k);
     int expected = 4;   //se modifica rezultatul asteptat in functie de input

@@ -38,8 +38,8 @@ add_executable(ProblemeDeConcurs main.cpp
         probleme/diverse/ex5_Stefan.h
         probleme/triunghi-cutii/ex6.h
         probleme/triunghi-cutii/ex6_Stefan.h
-        probleme/diverse/ex7.h
-        probleme/diverse/ex7_Stefan.h
+        probleme/placi-pavaje/ex7.h
+        probleme/placi-pavaje/ex7_Stefan.h
         probleme/diverse/ex8.h
         probleme/diverse/ex8_Stefan.h
         teorie/teorie1.h
