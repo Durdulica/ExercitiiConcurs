@@ -1,5 +1,5 @@
-#include "probleme/triunghi-cutii/6.5_Stefan.h"
+#include "probleme/diverse/ex7_Stefan.h"
 
 int main() {
-    rezolvare();
+    testare();
 }

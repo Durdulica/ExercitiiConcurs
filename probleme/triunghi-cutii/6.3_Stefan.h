@@ -33,16 +33,15 @@ bool dfsBase(int idx, int n, int remaining, int *weights, int *suffixMin, int *b
     return false;
 }
 
-void rezolvare() {
-    int n, s, m;
-    if(!(cin >> n >> s >> m)) {
-        cout << "Error on reading\n";
-        return;
-    }
+int rezolvare(int n, int s, int m) {
+    // if(!(cin >> n >> s >> m)) {
+        // cout << "Error on reading\n";
+        // return;
+    // }
 
     if(n <= 0) {
         cout << 0 << endl;
-        return;
+        return -1;
     }
 
     int **comb = new int *[n + 1];
@@ -98,7 +97,7 @@ void rezolvare() {
         delete[] comb;
         delete[] weights;
         delete[] suffixMin;
-        return;
+        return -1;
     }
 
     int *base = new int[n + 1];
@@ -107,7 +106,6 @@ void rezolvare() {
     }
     int cnt = 0;
     dfsBase(1, n,s, weights, suffixMin,base, cnt);
-    cout << cnt/2 % m << endl;
     for(int i = 0; i <= n; i++) {
         delete[] comb[i];
     }
@@ -115,6 +113,24 @@ void rezolvare() {
     delete[] weights;
     delete[] suffixMin;
     delete[] base;
+    return cnt/2 % m;
 }
 
+
+void assert_eq(int expected, int actual) {
+    if(expected != actual) {
+        cout << "Failed: expected " << expected << " but got " << actual<< endl;
+    }else {
+        cout << "Passed" << endl;
+    }
+}
+
+void testare() {
+    int n = 2;
+    int s = 8;
+    int m = 10000007;
+    int rez = rezolvare(n, s, m);
+    int expected = 3 % m;
+    assert_eq(expected, rez);
+}
 #endif //INC_6_3_STEFAN_H

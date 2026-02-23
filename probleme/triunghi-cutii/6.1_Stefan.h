@@ -1,6 +1,7 @@
 #ifndef INC_6_1_STEFAN_H
 #define INC_6_1_STEFAN_H
 #include <iostream>
+#include <string.h>
 using namespace std;
 
 //se dau n si s. Construiti un triunghi cu n linii din nr. intregi strict pozitive, a. i. fiecare elem. de pe linia i sa
@@ -31,16 +32,15 @@ bool dfsBase(int idx, int n, int remaining, int *weights, int *suffixMin, int *b
     return false;
 }
 
-void rezolvare() {
-    int n, s;
-    if(!(cin >> n >> s)) {
-        cout << "Error on reading" << endl;
-        return;
-    }
+bool rezolvare(int n, int s) {
+    // if(!(cin >> n >> s)) {
+        // cout << "Error on reading" << endl;
+        // return false;
+    // }
 
     if(n <= 0) {
         cout << "n too small" << endl;
-        return;
+        return false;
     }
 
     int **comb = new int*[n + 1];
@@ -86,14 +86,14 @@ void rezolvare() {
     }
 
     if(s < suffixMin[1]) {
-        cout << "NU" << endl;
+        // cout << "NU" << endl;
         for(int i  = 0; i <= n; i++) {
             delete[] comb[i];
         }
         delete[] comb;
         delete[] weights;
         delete[] suffixMin;
-        return;
+        return false;
     }
 
     int *base = new int[n + 1];
@@ -102,7 +102,7 @@ void rezolvare() {
     }
 
     if(!dfsBase(1,n,s,weights,suffixMin,base)) {
-        cout << "NU" << endl;
+        // cout << "NU" << endl;
         for(int i  = 0; i <= n; i++) {
             delete[] comb[i];
         }
@@ -110,9 +110,25 @@ void rezolvare() {
         delete[] weights;
         delete[] suffixMin;
         delete[] base;
-        return;
+        return false;
     }
 
-    cout << "DA\n";
+    // cout << "DA\n";
+    return true;
+}
+
+void assert_eq(bool expected, bool actual) {
+    if(expected != actual) {
+        cout << "Fail: expected " << expected << " but got " << actual << endl;
+    }else {
+        cout << "Passed" << endl;
+    }
+}
+
+void testare() {
+    int n = 2;
+    int s = 8;
+    bool rez = rezolvare(n,s);
+    assert_eq(true, rez);
 }
 #endif //INC_6_1_STEFAN_H

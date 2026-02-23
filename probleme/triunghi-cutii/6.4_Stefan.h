@@ -25,15 +25,14 @@ bool dfsBase(int idx, int n ,int remaining, int *weights, int *suffixMin, int *b
     return false;
 }
 
-void rezolvare() {
-    int n, s, L, R;
-    if(!(cin >> n >> s >> L >> R)) {
-        cout << "Error on reading\n";
-        return;
-    }
+int *rezolvare(int n, int s, int L, int R) {
+    // if(!(cin >> n >> s >> L >> R)) {
+        // cout << "Error on reading\n";
+        // return nullptr;
+    // }
     if(n <= 0) {
-        cout << "impossible\n";
-        return;
+        // cout << "impossible\n";
+        return nullptr;
     }
 
     int **comb = new int*[n + 1];
@@ -79,14 +78,14 @@ void rezolvare() {
     }
 
     if(s < suffixMin[1]) {
-        cout << "impossible\n";
+        // cout << "impossible\n";
         for(int i = 0; i <= n; i++) {
             delete[] comb[i];
         }
         delete[] comb;
         delete[] weights;
         delete[] suffixMin;
-        return;
+        return nullptr;
     }
 
     int *base = new int[n + 1];
@@ -95,7 +94,7 @@ void rezolvare() {
     }
 
     if(!dfsBase(1,n,s,weights,suffixMin,base,L,R)) {
-        cout << "impossible\n";
+        // cout << "impossible\n";
         for(int i = 0; i <= n; i++) {
             delete[] comb[i];
         }
@@ -103,12 +102,63 @@ void rezolvare() {
         delete[] weights;
         delete[] suffixMin;
         delete[] base;
+        return nullptr;
+    }
+
+    for(int i = 0; i <= n; i++) {
+        delete[] comb[i];
+    }
+    delete[] comb;
+    delete[] weights;
+    delete[] suffixMin;
+    return base;
+}
+
+void assert_eq(int *expected, int *actual, int n) {
+    if(expected == nullptr || actual == nullptr) {
+        if(expected == nullptr && actual == nullptr) {
+            cout << "Passed\n";
+        }else {
+            if(expected == nullptr) {
+                cout << "Failed: expected nullptr but got ";
+                for(int j = 1; j <= n; j++) {
+                    cout << actual[j] << " ";
+                }
+            }
+            if(actual == nullptr) {
+                cout << "Failed: expected ";
+                for(int j = 1; j <= n; j++) {
+                    cout << expected[j] << " ";
+                }
+                cout << " but got nullptr";
+            }
+        }
         return;
     }
 
     for(int i = 1; i <= n; i++) {
-        cout << base[i] << " ";
+        if(expected[i] != actual[i]) {
+            cout << "Failed: expected ";
+            for(int j = 1; j <= n; j++) {
+                cout << expected[j] << " ";
+            }
+            cout << " but got ";
+            for(int j = 1; j <= n; j++) {
+                cout << actual[j] << " ";
+            }
+            return;
+        }
     }
-    cout << endl;
+
+    cout << "Passed\n";
+}
+
+void testare() {
+    int n = 2;
+    int s = 8;
+    int L = 1, R = 4;
+    int *rez = rezolvare(n, s, L, R);
+    int *expected = nullptr;
+    assert_eq(expected, rez, n);
 }
 #endif //INC_6_4_STEFAN_H

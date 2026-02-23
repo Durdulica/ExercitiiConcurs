@@ -31,15 +31,14 @@ bool dfsBase(int idx, int n, int remaining, int *weights, int *suffixMin, int*ba
     return false;
 }
 
-void rezolvare() {
-    int n, q;
-    if(!(cin >> n >> q)) {
-        cout << "Error on reading\n";
-        return;
-    }
+int *rezolvare(int n, int q) {
+    // if(!(cin >> n >> q)) {
+        // cout << "Error on reading\n";
+        // return;
+    // }
 
     if(n <= 0) {
-        return;
+        return nullptr;
     }
 
     int **comb = new int*[n + 1];
@@ -89,6 +88,8 @@ void rezolvare() {
     for (int i = 0; i <= n; ++i) {
         base[i] = 0;
     }
+
+    int *result = new int[q + 1];
     for(int i = 0; i < q; i++) {
         int l, r, cnt = 0;
         cin >> l >> r;
@@ -97,7 +98,7 @@ void rezolvare() {
                 cnt++;
             }
         }
-        cout << cnt << endl;
+        result[i] = cnt;
     }
 
     for(int i = 0; i <= n; i++) {
@@ -107,5 +108,57 @@ void rezolvare() {
     delete[] weights;
     delete[] suffixMin;
     delete[] base;
+    return result;
+}
+
+void assert_eq(int *expected, int *actual, int n) {
+    if(expected == nullptr || actual == nullptr) {
+        if(expected == nullptr && actual == nullptr) {
+            cout << "Passed\n";
+        }else {
+            if(expected == nullptr) {
+                cout << "Failed: expected nullptr but got ";
+                for(int j = 1; j <= n; j++) {
+                    cout << actual[j] << " ";
+                }
+            }
+            if(actual == nullptr) {
+                cout << "Failed: expected ";
+                for(int j = 1; j <= n; j++) {
+                    cout << expected[j] << " ";
+                }
+                cout << " but got nullptr";
+            }
+        }
+        return;
+    }
+
+    for(int i = 0; i < n; i++) {
+        if(expected[i] != actual[i]) {
+            cout << "Failed: expected ";
+            for(int j = 0; j <= n; j++) {
+                cout << expected[j] << " ";
+            }
+            cout << " but got ";
+            for(int j = 0; j <= n; j++) {
+                cout << actual[j] << " ";
+            }
+            return;
+        }
+    }
+
+    cout << "Passed\n";
+}
+
+//citirea intervalelor se face de la tastatura
+//4 6
+//7 8
+//9 12
+void testare() {
+    int n = 2;
+    int q = 3;
+    int *rez = rezolvare(n, q);
+    int expected[100] = {2,2,2};
+    assert_eq(expected, rez, n);
 }
 #endif //INC_6_5_STEFAN_H

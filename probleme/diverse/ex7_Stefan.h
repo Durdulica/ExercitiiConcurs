@@ -12,9 +12,7 @@ using namespace std;
 //n, m si k, iar pe urmatoarele k linii se vor afla perechi de nr. intregi repr. linia si coloana pe care se afla o bucata buna.
 //sa se afis. nr. max. de blocuri. 2*2 care pot fi amplasate pe strada
 
-int n, m, k;
-int mat[16][151] = {};
-void citire() {
+void citire(int mat[16][151], int n, int m, int k) {
     ifstream fin("D:/info/c++/clion/ProblemeDeConcurs/file.in.txt");
     fin >> n >> m >> k;
     for (int i = 0; i < k; i++) {
@@ -24,10 +22,10 @@ void citire() {
     }
 }
 
-void rezolvare() {
-    citire();
+int rezolvare(int mat[16][151], int n, int m, int k) {
+//    citire();
     int rez = 0;
-    for(int i = 1; i < n; i++) {        //100% ineficient, totusi cred ca merge in toate cazurile
+    for(int i = 1; i < n; i++) {       
         for(int j = 1; j < m; j++) {
             if(mat[i][j] == 0 && mat[i+1][j] == 0 && mat[i][j+1] == 0 && mat[i+1][j+1] == 0) {
                 rez++;
@@ -36,6 +34,24 @@ void rezolvare() {
         }
     }
 
-    cout << rez << endl;
+    return rez;
+}
+
+void assert_eq(int expected, int actual) {
+    if(actual != expected) {
+        cout << "Failed: expected " << expected << " but got " << actual << endl;
+    }else {
+        cout << "Passed" << endl;
+    }
+}
+
+//citirea se face de la tastatura dupa modelul cerut de problema
+void testare() {
+    int mat[16][151];
+    int n, m ,k;
+    citire(mat, n, m, k);
+    int rez = rezolvare(mat, n, m, k);
+    int expected = 4;   //se modifica rezultatul asteptat in functie de input
+    assert_eq(expected, rez);
 }
 #endif //EX7_STEFAN_H
