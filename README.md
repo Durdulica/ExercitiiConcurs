@@ -480,3 +480,123 @@ Explicatie: traseul este 9,5,1. P1 ia 9 si 1, P2 ia 5 => 10-5=5.
 - Problema 3: Într-un șir de senzori (cost = energie consumată, timp = timp activ), determinați dacă există o fereastră de lungime fixă K cu raport energie/timp cel puțin T. Afișați YES/NO.
 - Problema 4: Dată o secvență de cheltuieli zilnice (cost) și timpi de așteptare (timp), găsiți cea mai lungă fereastră cu raport cost/timp sub o limită P. Afișați lungimea maximă și intervalul.
 - Problema 5: Înregistrări audio (cost = mărime fișier, timp = durată secunde); găsiți două ferestre disjuncte cu lungime în [L, U] care au aceeași medie maximă cost/timp. Afișați media și pozițiile celor două ferestre.
+
+# Probleme cu triunghi de cutii (similare cu ex6)
+
+Acest set contine 5 probleme asemanatoare cu triunghiul de tip Pascal, cu
+cerinte gradate de la usor la mai complex. Fiecare problema are enunt, format
+input/output, constrangeri si un exemplu.
+
+## Problema 1: Exista o configuratie?
+
+Enunt: Se dau n si s. Construiti un triunghi cu n linii din numere intregi
+strict pozitive, astfel incat fiecare element de pe linia i sa fie suma celor
+doua elemente de sub el (linia i+1), iar suma tuturor elementelor din triunghi
+sa fie exact s. Cerinta este sa afisati doar daca exista cel putin o
+configuratie valida.
+
+Input: o linie cu n si s.
+Output: `DA` daca exista, altfel `NU`.
+Constrangeri: 1 <= n <= 18, 1 <= s < 10^6.
+
+Exemplu:
+Input:
+```
+2 8
+```
+Output:
+```
+DA
+```
+Explicatie: baza [1,3] produce triunghiul [4] / [1,3], suma totala fiind 8.
+
+## Problema 2: Reconstruieste baza minima lexicografic
+
+Enunt: Se dau n si s. Daca exista configuratii valide, afisati baza
+(ultima linie) cu valori strict pozitive care produce suma totala s si este
+minima lexicografic. Daca nu exista, afisati `impossible`.
+
+Input: o linie cu n si s.
+Output: n numere (baza) sau `impossible`.
+Constrangeri: 1 <= n <= 18, 1 <= s < 10^6.
+
+Exemplu:
+Input:
+```
+3 14
+```
+Output:
+```
+1 1 3
+```
+Explicatie: baza [1,1,3] genereaza suma 14 si este cea mai mica lexicografic.
+
+## Problema 3: Numar de configuratii modulo M
+
+Enunt: Se dau n, s si m. Determinati cate baze de n elemente strict pozitive
+genereaza un triunghi valid cu suma totala exact s. Raspunsul se da modulo m.
+
+Input: o linie cu n s m.
+Output: numarul configuratiilor modulo m.
+Constrangeri: 1 <= n <= 18, 1 <= s < 10^6, 2 <= m <= 10^9+7.
+
+Exemplu:
+Input:
+```
+2 8 1000000007
+```
+Output:
+```
+3
+```
+Explicatie: bazele valide sunt [1,3], [2,2], [3,1].
+
+## Problema 4: Triunghi cu elemente de baza in interval [L, R]
+
+Enunt: Se dau n, s, L si R. Baza triunghiului trebuie sa contina numai valori
+in intervalul [L, R], iar restul regulilor raman la fel (fiecare element este
+suma celor doua de dedesubt). Determinati daca exista configuratie si, daca da,
+afisati una valida.
+
+Input: o linie cu n s L R.
+Output: `impossible` sau o baza valida de n numere.
+Constrangeri: 1 <= n <= 18, 1 <= s < 10^6, 1 <= L <= R <= 10^5.
+
+Exemplu:
+Input:
+```
+3 18 2 4
+```
+Output:
+```
+2 2 4
+```
+Explicatie: toate elementele bazei sunt in [2,4], iar suma totala este 18.
+
+## Problema 5: Suma in interval pe multiple interogari
+
+Enunt: Se da n si apoi q interogari. Fiecare interogare ofera un interval
+[A, B]. Pentru fiecare interogare, trebuie sa determinati daca exista o baza
+strict pozitiva care genereaza un triunghi valid cu suma totala S in [A, B].
+Afisati pentru fiecare interogare numarul de sume realizabile din interval.
+
+Input: prima linie n q; urmatoarele q linii contin A B.
+Output: pentru fiecare interogare, un numar intreg.
+Constrangeri: 1 <= n <= 18, 1 <= q <= 200000, 1 <= A <= B < 10^6.
+
+Exemplu:
+Input:
+```
+2 3
+4 6
+7 8
+9 12
+```
+Output:
+```
+3
+2
+4
+```
+Explicatie: pentru n=2, toate sumele >=4 sunt realizabile; numaram valorile
+din fiecare interval.
