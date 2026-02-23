@@ -1,4 +1,4 @@
-#include "probleme/raport-cost/5.2_Stefan.h"
+#include "probleme/triunghi-cutii/6.5_Stefan.h"
 
 int main() {
     rezolvare();

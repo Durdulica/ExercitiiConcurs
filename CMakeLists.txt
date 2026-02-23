@@ -36,8 +36,8 @@ add_executable(ProblemeDeConcurs main.cpp
         probleme/raport-cost/5.1_Stefan.h
         probleme/raport-cost/5.2_Stefan.h
         probleme/diverse/ex5_Stefan.h
-        probleme/diverse/ex6.h
-        probleme/diverse/ex6_Stefan.h
+        probleme/triunghi-cutii/ex6.h
+        probleme/triunghi-cutii/ex6_Stefan.h
         probleme/diverse/ex7.h
         probleme/diverse/ex7_Stefan.h
         probleme/diverse/ex8.h
