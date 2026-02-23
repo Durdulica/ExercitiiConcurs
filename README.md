@@ -600,3 +600,126 @@ Output:
 ```
 Explicatie: pentru n=2, toate sumele >=4 sunt realizabile; numaram valorile
 din fiecare interval.
+
+# Probleme cu pavaj 2x2 pe grila (similare cu ex7)
+
+Acest set contine 5 probleme inspirate din pavarea unei strazi modelata ca
+grila n x m cu celule bune/stricate. Scopul este amplasarea de placi 2x2 fara
+suprapunere, pe celule permise.
+
+## Problema 1: Numar maxim de placi 2x2
+
+Enunt: Se da o grila n x m. Unele celule sunt marcate ca "bune" si nu pot fi
+acoperite. Restul celulelor (stricate) pot fi acoperite cu placi 2x2. O placa
+2x2 trebuie sa acopere exact 4 celule stricate si nu se poate suprapune cu alte
+placi. Determinati numarul maxim de placi 2x2 care pot fi amplasate.
+
+Input: prima linie n m k, apoi k linii cu coordonate (x, y) ale celulelor bune.
+Output: un numar intreg - numarul maxim de placi.
+Constrangeri: 1 <= m <= 15, 1 <= n <= 150, 0 <= k <= n*m.
+
+Exemplu:
+Input:
+```
+3 4 1
+2 2
+```
+Output:
+```
+1
+```
+Explicatie: se poate pune o singura placa 2x2 fara a acoperi celula buna.
+
+## Problema 2: Afisarea unei configuratii optime
+
+Enunt: In aceleasi conditii ca in problema 1, afisati o configuratie cu numar
+maxim de placi 2x2. Pentru fiecare placa afisati coordonata coltului stanga-sus.
+Daca exista mai multe solutii optime, afisati-o pe cea lexicografic minima.
+
+Input: n m k, apoi k coordonate.
+Output: pe prima linie numarul maxim, apoi coordonatele placilor.
+Constrangeri: 1 <= m <= 15, 1 <= n <= 120, 0 <= k <= n*m.
+
+Exemplu:
+Input:
+```
+4 4 0
+```
+Output:
+```
+4
+1 1
+1 3
+3 1
+3 3
+```
+Explicatie: intreaga grila poate fi acoperita cu 4 placi 2x2 disjuncte.
+
+## Problema 3: Cost minim pentru acoperire completa a celulelor stricate
+
+Enunt: Se dau costurile c1 pentru repararea unei celule 1x1 si c2 pentru o
+placa 2x2. Celulele bune nu se ating. Celulele stricate trebuie reparate toate,
+folosind piese 1x1 si/sau 2x2, fara suprapunere. Determinati costul minim total.
+
+Input: n m k c1 c2, apoi k coordonate ale celulelor bune.
+Output: costul minim.
+Constrangeri: 1 <= m <= 15, 1 <= n <= 150, 0 <= k <= n*m, 1 <= c1,c2 <= 10^6.
+
+Exemplu:
+Input:
+```
+2 3 1 5 12
+1 2
+```
+Output:
+```
+22
+```
+Explicatie: se foloseste o placa 2x2 (12) si doua placi 1x1 (2*5), total 22.
+
+## Problema 4: Interogari online cu blocari/deblocari
+
+Enunt: Aveti o grila initiala n x m cu celule bune/stricate. Primiti q operatii:
+`B x y` (celula devine buna) sau `S x y` (celula devine stricata). Dupa fiecare
+operatie, afisati numarul maxim de placi 2x2 ce pot fi amplasate.
+
+Input: n m k q, apoi k coordonate initiale bune, apoi q operatii.
+Output: q linii, fiecare cu raspunsul dupa operatia curenta.
+Constrangeri: 1 <= m <= 12, 1 <= n <= 200, 1 <= q <= 200000.
+
+Exemplu:
+Input:
+```
+3 3 0 3
+B 2 2
+S 2 2
+B 1 1
+```
+Output:
+```
+0
+1
+0
+```
+Explicatie: modificarile activeaza/dezactiveaza ferestre 2x2 valide.
+
+## Problema 5: Pavaj mixt cu placi 2x2 si 2x3
+
+Enunt: Celulele bune raman interzise. Puteti folosi doua tipuri de placi:
+2x2 si 2x3 (orientata doar pe 2 linii si 3 coloane), fara suprapunere. Fiecare
+placa are profit (p22, respectiv p23). Determinati profitul maxim total.
+
+Input: n m k p22 p23, apoi k coordonate ale celulelor bune.
+Output: profitul maxim.
+Constrangeri: 1 <= m <= 12, 1 <= n <= 150, 0 <= k <= n*m, 1 <= p22,p23 <= 10^6.
+
+Exemplu:
+Input:
+```
+2 6 0 3 5
+```
+Output:
+```
+10
+```
+Explicatie: doua placi 2x3 aduc profit 10, mai bun decat trei placi 2x2 (9).
