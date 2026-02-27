@@ -1,5 +1,4 @@
-#include "probleme/placi-pavaje/7.1_Stefan.h"
+#include "probleme/placi-pavaje/7.2_Stefan.h"
 
 int main() {
-    testare();
 }
