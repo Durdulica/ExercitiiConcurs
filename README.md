@@ -113,6 +113,13 @@ Output:
 ```
 Explicatie: Scorul maxim este 7, iar 2 subsiruri distincte ating acest scor.
 
+# 5 exercitii utile (doar quick sort)
+- Sorteaza un vector mic de intregi cu `quicksort::quick_sort` si afiseaza rezultatul (vezi `probleme/quicksort/quicksort.h::testare`).
+- Modifica functia pentru a sorta descrescator (inverseaza comparatiile) si verifica cu `assert` ca vectorul este ordonat invers.
+- Adauga un contor global de comparatii in `quick_sort` si afiseaza cate comparatii se fac pentru vectorul de test.
+- Alege pivotul ca mediana dintre `v[stanga]`, `v[(stanga+dreapta)/2]` si `v[dreapta]`; compara numarul de comparatii cu varianta initiala.
+- Apeleaza `quick_sort` doar pe un sub-interval (de ex. pozitiile 2..6) si confirma ca restul elementelor raman neschimbate.
+
 # Probleme cu subsecvente de suma maxima (similare cu ex2)
 
 Acest set contine 5 probleme asemanatoare cu subsecventa de suma maxima cu

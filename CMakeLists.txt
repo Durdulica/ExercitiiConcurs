@@ -43,6 +43,7 @@ add_executable(ProblemeDeConcurs main.cpp
         probleme/diverse/ex8.h
         probleme/diverse/ex8_Stefan.h
         probleme/cozi-monotone/sliding_min.h
+        probleme/quicksort/quicksort.h
         probleme/simulare-concurs/turcane.h
         teorie/teorie1.h
         teorie/teorie3.h
