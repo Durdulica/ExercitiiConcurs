@@ -1,5 +1,6 @@
-#include "probleme/placi-pavaje/7.1_Stefan.h"
+#include "probleme/cozi-monotone/sliding_min.h"
 
 int main() {
-    testare();
+    cozi_monotone::testare();
 }
+
