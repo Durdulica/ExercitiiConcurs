@@ -40,7 +40,7 @@ add_executable(ProblemeDeConcurs main.cpp
         probleme/triunghi-cutii/ex6_Stefan.h
         probleme/placi-pavaje/ex7.h
         probleme/placi-pavaje/ex7_Stefan.h
-        probleme/diverse/ex8.h
+        probleme/invatare-dp-ex8/ex8.h
         probleme/diverse/ex8_Stefan.h
         probleme/cozi-monotone/sliding_min.h
         probleme/quicksort/quicksort.h
