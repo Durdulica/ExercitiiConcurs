@@ -47,7 +47,4 @@ add_executable(ProblemeDeConcurs main.cpp
         probleme/simulare-concurs/turcane.h
         teorie/teorie1.h
         teorie/teorie3.h
-        subiecte-olimpiada/knight/knight.h
-        subiecte-olimpiada/knight/knight.in
-        subiecte-olimpiada/knight/11-12_knight_RO.pdf
         utilitare/file.in.txt)
