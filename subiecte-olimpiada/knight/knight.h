@@ -67,7 +67,8 @@ int moduriAspreB(int N, int a, int b) {
     return rez;
 }
 void rezolvare() {
-    ifstream fin("D:/info/c++/clion/ProblemeDeConcurs/subiecte-olimpiada/knight.in");
+    // Use the repository-relative path so the input file is found after moving into its own folder.
+    ifstream fin("subiecte-olimpiada/knight/knight.in");
     // ofstream fout("knight.out");
     int C, N;
     fin >> C >> N;
