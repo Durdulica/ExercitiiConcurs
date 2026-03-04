@@ -102,4 +102,57 @@ void rezolvare() {
         }
     }
 }
+
+void assert_eq(int actual, int expected) {
+    if(actual != expected) {
+        cout << "Failed: expected " << expected << " but got " << actual << endl;
+    }else {
+        cout << "Passed" << endl;
+    }
+}
+
+void assert_eqC2(bool actual, bool expected) {
+    if(actual != expected) {
+        cout << "Failed: expected " << expected << " but got " << actual << endl;
+    }else {
+        cout << "Passed" << endl;
+    }
+}
+
+void testare1() {
+    int C = 1;
+    int N = 7;
+    int v[N + 1] = {0,0,1,1,3,3,3,4};
+    int expected = 1;
+    assert_eq(nrNoduri1Fiu(N), expected);
+}
+
+void testare2() {
+    int C = 2;
+    int N = 7;
+    int v[N + 1] = {0,0,1,1,3,3,3,4};
+
+    int Q = 3;
+    int vA[Q] = {7,7,6};
+    int vB[Q] = {2,4,2};
+    int vExpected[Q] = {1,0,1};
+
+    for(int i = 0; i < Q; i++) {
+        assert_eq(aSpreB(N, vA[i], vB[i]), vExpected[i]);
+    }
+}
+
+void testare3() {
+    int C = 3;
+    int N = 7;
+    int v[N + 1] = {0,0,1,1,3,3,3,4};
+
+    int Q = 3;
+    int vA[Q] = {7,7,6};
+    int vB[Q] = {2,4,2};
+    int vExpected[Q] = {2,0,1};
+    for(int i = 0; i < Q; i++) {
+        assert_eq(moduriAspreB(N, vA[i], vB[i]), vExpected[i]);
+    }
+}
 #endif //KNIGHT_H
