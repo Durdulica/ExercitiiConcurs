@@ -1,4 +1,4 @@
-#ifndef RECAPITULARE_EX1_H
+ #ifndef RECAPITULARE_EX1_H
 #define RECAPITULARE_EX1_H
 #include <iostream>
 #include <cstring>

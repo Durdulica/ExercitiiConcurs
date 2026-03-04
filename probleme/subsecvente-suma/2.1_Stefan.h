@@ -79,7 +79,8 @@ void testare() {
     r->sum = 6;
     r->left = 3;
     r->right = 5;
-    // assert_eq(*rezolvare(,8,3), *r, "vec: 1 -2 3 4 -1 2 -5 2");
+    int v[8] = {1,-2,3,4,-1,2,-5,2};
+    assert_eq(*rezolvare(v,8,3), *r, "vec: 1 -2 3 4 -1 2 -5 2");
     r->sum = 12;
     r->left = 6;
     r->right = 8;

@@ -1,6 +1,5 @@
 #ifndef TURCANE_H
 #define TURCANE_H
-
 #include <cassert>
 #include <iostream>
 

@@ -1,6 +1,5 @@
 #ifndef COZI_MONOTONE_SLIDING_MIN_H
 #define COZI_MONOTONE_SLIDING_MIN_H
-
 #include <cassert>
 #include <iostream>
 
